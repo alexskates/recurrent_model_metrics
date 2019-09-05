@@ -1,7 +1,6 @@
 import numpy as np
 from os import path
 from similarity import dice_binary, kl_divergence
-from munkres import Munkres, print_matrix
 
 
 class Model(object):
@@ -73,6 +72,7 @@ def munkres_algorithm_indices(seq1, seq2, verbose=True):
     https://en.wikipedia.org/wiki/Hungarian_algorithm
     https://pypi.org/project/munkres/ for usage of Munkres package
     """
+    from munkres import Munkres, print_matrix
     m = Munkres()
 
     def similarity_matrix(seq1, seq2):
@@ -105,6 +105,7 @@ def munkres_algorithm_indices(seq1, seq2, verbose=True):
             print('total cost: {}'.format(total))
     return np.array(indexes)[:, 1]
 
+
 def munkres_algorithm_indices_kl(cov1, cov2, verbose=True):
     """
     Returns the optimal permutation of the states of the first sequence so as
@@ -116,6 +117,7 @@ def munkres_algorithm_indices_kl(cov1, cov2, verbose=True):
     https://en.wikipedia.org/wiki/Hungarian_algorithm
     https://pypi.org/project/munkres/ for usage of Munkres package
     """
+    from munkres import Munkres, print_matrix
     m = Munkres()
 
     # Similarity: high = good, Cost: low = good.
